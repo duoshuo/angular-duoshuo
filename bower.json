@@ -23,6 +23,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "*",
+    "angular": "*"
   }
 }
