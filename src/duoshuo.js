@@ -1,5 +1,4 @@
-;
-(function(angular, duoshuo, API, configs) {
+;(function(angular, duoshuo, API, configs) {
 
   'use strict';
 
@@ -12,33 +11,7 @@
   angular.module('duoshuo', [])
     .factory('$duoshuo', function() {
       return new Duoshuo(configs);
-    })
-    .directive('duoshuo', ['$duoshuo',
-      function($duoshuo) {
-        return {
-          restrict: 'EA',
-          replace: true,
-          scope: {
-            threadKey: '=',
-            title: '=',
-            image: '=',
-            url: '=',
-            authorKey: '=',
-            formPosition: '=',
-            limit: '=',
-            order: '='
-          },
-          template: '<div class="ds-thread"></div>',
-          link: function(scope, element, attrs) {
-            scope.$watch('threadKey', function(threadKey) {
-              if (angular.isDefined(threadKey)) {
-                // $duoshuo.loadComment(scope, element[0]);
-              }
-            });
-          }
-        };
-      }
-    ]);
+    });
 
   function Duoshuo() {
     this.configs = configs;
