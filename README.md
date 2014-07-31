@@ -8,14 +8,16 @@ using bower:
 ```
 $ bower install duoshuo
 ```
-
-using NPM instead:
+using NPM instead of bower:
 
 ```
 $ npm install angular-duoshuo
 ```
 
 ### Example
+
+See more examples in `./examples`, or just run `$ npm run example`
+
 ````javascript
 angular.module('myApp',['duoshuo'])
 .controller('myController', function($scope, $duoshuo){
@@ -29,9 +31,6 @@ angular.module('myApp',['duoshuo'])
   });
 });
 ````
-
-### API
-check this file: `src/duoshuo.js`
 
 ### Contributing
 - Fork this repo

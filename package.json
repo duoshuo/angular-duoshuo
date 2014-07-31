@@ -4,7 +4,9 @@
   "description": "a duoshuo SDK for angular.js, pure front-end, cross-domain request supported.",
   "main": "src/duoshuo.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "./node_modules/.bin/serve ./examples",
+    "start": "npm run dev",
+    "example": "npm run serve"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,6 @@
   },
   "homepage": "https://github.com/duoshuo/angular-duoshuo",
   "devDependencies": {
-    
+    "serve": "~1.4.0"
   }
 }
