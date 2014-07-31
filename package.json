@@ -4,8 +4,9 @@
   "description": "a duoshuo SDK for angular.js, pure front-end, cross-domain request supported.",
   "main": "src/duoshuo.js",
   "scripts": {
-    "serve": "./node_modules/.bin/serve ./examples",
-    "start": "npm run dev",
+    "serve": "./node_modules/.bin/serve .",
+    "dev": "npm run serve",
+    "start": "npm run serve",
     "example": "npm run serve"
   },
   "repository": {

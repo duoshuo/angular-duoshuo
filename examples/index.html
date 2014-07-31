@@ -3,15 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Duoshuo Angular SDK</title>
+  <style>
+    h3 {
+      font-size: 16px;
+    }
+    .angular-duoshuo {
+      margin: 50px;
+    }
+    .response {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
+  <div id="angular-duoshuo" class="angular-duoshuo" ng-controller="duoshuo">
+    <h3 ng-show="responseJSON">当前用户数据:</h3>
+    <div class="response" ng-bind="responseJSON"></div>
+    <div duoshuo thread-key="123"></div>
+  </div>
   <script>
     var duoshuoQuery = {
-      short_name: 'blabla'
+      short_name: '111'
     }
   </script>
-  <script src="../bower_components/angular/angular.min.js"></script>
   <script src="http://static.duoshuo.com/embed.unstable.js"></script>
+  <script src="../bower_components/angular/angular.min.js"></script>
   <script src="../src/duoshuo.js"></script>
   <script src="./example.js"></script>
 </body>
