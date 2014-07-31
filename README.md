@@ -22,11 +22,10 @@ See more examples in `./examples`, or just run `$ npm run example`
 angular.module('myApp',['duoshuo'])
 .controller('myController', function($scope, $duoshuo){
   // high level api
-  $duoshuo.threads.create({
+  $duoshuo.post('threads/create', {
     title: 'new thread',
     content: 'blablablabla'
-  }, function(err, response, data){
-    if (err) return console.error(err);
+  }, function(data){
     console.log(data);
   });
 });

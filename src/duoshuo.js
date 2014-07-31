@@ -9,31 +9,35 @@
   if (!configs.short_name) throw new Error('duoshuo short_name required!');
 
   angular.module('duoshuo', [])
-    .factory('$duoshuo', function() {
-      return new Duoshuo(configs);
+  .service('$duoshuo', function($rootScope) {
+    var self = this;
+
+    // lowlevel api set
+    angular.forEach(['get', 'post', 'ajax'], function(method) {
+      self[method] = function(endpoint, data, callback, skipCheck) {
+        return API[method](endpoint, data, function(d) {
+          callback(d);
+          if (!skipCheck) $rootScope.$apply();
+          return;
+        });
+      }
     });
 
-  function Duoshuo() {
-    this.configs = configs;
-    this.events = ['reset', 'ready'];
-  }
-
-  // lowlevel api set
-  Duoshuo.prototype.get = API.get;
-  Duoshuo.prototype.post = API.post;
-  Duoshuo.prototype.ajax = API.ajax;
-
-  // events
-  Duoshuo.prototype.on = function(eve, callback) {
-    if (this.events.indexOf(eve) === 0) return callback(new Error('event not found'));
-    var e = eve;
-    if (e === 'ready') e = 'reset';
-    return DUOSHUO.visitor.on(e, function() {
-      var self = this;
-      var data = this.data;
-      return callback(null, data, self);
-    });
-  };
+    // event wrapper
+    this.on = function(eve, callback, skipCheck) {
+      if (['reset', 'ready'].indexOf(eve) === 0) 
+        return callback(new Error('event not found'));
+      var e = eve;
+      if (e === 'ready') e = 'reset';
+      return DUOSHUO.visitor.on(e, function() {
+        var self = this;
+        var data = this.data;
+        callback(null, data, self);
+        if (!skipCheck) $rootScope.$apply();
+        return;
+      });
+    };
+  });
 
 })(
   window.angular,

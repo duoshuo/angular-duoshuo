@@ -21,6 +21,9 @@
   <div id="angular-duoshuo" class="angular-duoshuo" ng-controller="duoshuo">
     <h3 ng-show="responseJSON">当前用户数据:</h3>
     <div class="response" ng-bind="responseJSON"></div>
+    <div class="threads" ng-repeat="thread in threads">
+      <h3 ng-bind="thread.title" ng-show="thread.title !== ''"></h3>
+    </div>
   </div>
   <script>
     var duoshuoQuery = {
