@@ -1,4 +1,4 @@
-;(function(angular, duoshuo, API, configs) {
+;(function(angular, duoshuo, API, configs, NProgress) {
 
   'use strict';
 
@@ -8,6 +8,8 @@
   if (!configs) throw new Error('duoshuoQuery object required!');
   if (!configs.short_name) throw new Error('duoshuo short_name required!');
 
+  var NProgressExist = NProgress && NProgress.start && NProgress.stop;
+
   angular.module('duoshuo', [])
   .service('$duoshuo', function($rootScope) {
     var self = this;
@@ -15,7 +17,9 @@
     // lowlevel api set
     angular.forEach(['get', 'post', 'ajax'], function(method) {
       self[method] = function(endpoint, data, callback, skipCheck) {
+        if (NProgressExist) NProgress.start();
         return API[method](endpoint, data, function(d) {
+          if (NProgressExist) NProgress.stop();
           callback(d);
           if (!skipCheck) $rootScope.$apply();
           return;
@@ -43,5 +47,6 @@
   window.angular,
   window.DUOSHUO,
   window.DUOSHUO.API,
-  window.duoshuoQuery
+  window.duoshuoQuery,
+  window.NProgress
 );
