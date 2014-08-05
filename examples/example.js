@@ -1,9 +1,9 @@
 var app = angular.module('app', ['duoshuo']);
 
 app.controller('duoshuo', function($scope, $duoshuo) {
-  // console.log($duoshuo);
   // inspect current user 
   $duoshuo.on('ready', function(err, data) {
+    if (err) return console.error(err);
     console.log(data);
     $scope.responseJSON = JSON.stringify(data);
   });
@@ -11,7 +11,22 @@ app.controller('duoshuo', function($scope, $duoshuo) {
   $duoshuo.get('threads/list', {
     page: 1,
     limit: 30
-  }, function(data) {
+  }, function(err, data) {
+    // success callback
+    // `err` is common error
+    if (err) return console.error(err);
     $scope.threads = data.response;
+  }, function(data){
+    // error callback
+    // `data` is http error
+    console.log(data);
+  });
+  // test membership api
+  $duoshuo.get('sites/membership', {}, function(err, data) {
+    // success callback
+    if (err) return console.error(err);
+    console.log(data);
+  }, function(data){
+    console.log(data);
   });
 });

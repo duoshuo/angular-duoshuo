@@ -11,17 +11,21 @@
 
     // lowlevel api set
     angular.forEach(['get', 'post', 'ajax'], function(method) {
-      self[method] = function(endpoint, data, callback, skipCheck) {
+      self[method] = function(endpoint, data, callback, errorCallback, skipCheck) {
         if (!window.DUOSHUO) throw new Error('duoshuo embed.js required!');
         var API = window.DUOSHUO.API;
         if (!API) throw new Error('duoshuo embed.js must be unstable version!');
         if (NProgressExist) NProgress.start();
-        return API[method](endpoint, data, function(d) {
+        return API[method](endpoint, data, function(result) {
           if (NProgressExist) NProgress.done();
-          callback(d);
+          callback(
+            (result.code === 0) ? null : new Error(result.code + ' ' + result.errorMessage), 
+            result.response, 
+            result
+          );
           if (!skipCheck) $rootScope.$apply();
           return;
-        });
+        }, errorCallback);
       }
     });
 

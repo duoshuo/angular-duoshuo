@@ -25,7 +25,8 @@ angular.module('myApp',['duoshuo'])
   $duoshuo.post('threads/create', {
     title: 'new thread',
     content: 'blablablabla'
-  }, function(data){
+  }, function(err, data) {
+    if (err) return console.error(err);
     console.log(data);
   });
 });
