@@ -16,17 +16,17 @@ app.controller('duoshuo', function($scope, $duoshuo) {
     // `err` is common error
     if (err) return console.error(err);
     $scope.threads = data.response;
-  }, function(data){
+  }, function(err) {
     // error callback
-    // `data` is http error
-    console.log(data);
+    // `err` is http error
+    console.log(err);
   });
   // test membership api
   $duoshuo.get('sites/membership', {}, function(err, data) {
     // success callback
     if (err) return console.error(err);
     console.log(data);
-  }, function(data){
-    console.log(data);
+  }, function(err) {
+    console.log(err);
   });
 });

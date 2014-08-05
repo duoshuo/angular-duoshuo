@@ -26,11 +26,24 @@ angular.module('myApp',['duoshuo'])
     title: 'new thread',
     content: 'blablablabla'
   }, function(err, data) {
+    // success callback
     if (err) return console.error(err);
     console.log(data);
+  }, function(err){
+    // error callback
+    console.error(err);
   });
 });
 ````
+### Development
+just enjoy hacking
+```
+$ git clone https://github.com/duoshuo/angular-duoshuo.git
+$ npm install 
+$ bower install 
+$ npm run dev // serve src files and examples
+$ npm run build // build dist files
+```
 
 ### Contributing
 - Fork this repo

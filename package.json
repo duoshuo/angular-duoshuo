@@ -4,7 +4,8 @@
   "description": "a duoshuo SDK for angular.js, pure front-end, cross-domain request supported.",
   "main": "src/duoshuo.js",
   "scripts": {
-    "serve": "./node_modules/.bin/serve .",
+    "serve": "node_modules/.bin/serve .",
+    "build": "node_modules/.bin/uglifyjs src/duoshuo.js -o dist/duoshuo.min.js --source-map dist/duoshuo.min.js.map --source-map-url duoshuo.min.js.map",
     "dev": "npm run serve",
     "start": "npm run serve",
     "example": "npm run serve"
@@ -27,6 +28,7 @@
   },
   "homepage": "https://github.com/duoshuo/angular-duoshuo",
   "devDependencies": {
-    "serve": "~1.4.0"
+    "serve": "~1.4.0",
+    "uglify-js": "^2.4.15"
   }
 }
