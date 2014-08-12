@@ -47,7 +47,10 @@
     // comments renderer
     this.render = function(element) {
       if (!window.DUOSHUO) throw new Error('duoshuo embed.js required!');
-      window.DUOSHUO.EmbedThread(element);
+      var data = {};
+      if (attrs.threadId) data['thread-id'] = attrs.threadId;
+      if (attrs.threadKey) data['thread-key'] = attrs.threadKey;
+      return window.DUOSHUO.createEmbedThread('div', data);
     };
   })
   .directive('duoshuo', function($duoshuo){
@@ -57,7 +60,8 @@
       template: '<div class="ds-thread"></div>',
       link: function(scope, element, attrs) {
         // render comments when dom has been injected.
-        $duoshuo.render(element[0]);
+        angular.element(element[0])
+          .append($duoshuo.render(attrs));
       }
     };
   });
