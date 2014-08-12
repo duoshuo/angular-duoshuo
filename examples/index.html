@@ -24,6 +24,7 @@
     <div class="threads" ng-repeat="thread in threads">
       <h3 ng-bind="thread.title" ng-show="thread.title !== ''"></h3>
     </div>
+    <div duoshuo data-thread-key="{{demokey}}"></div>
   </div>
   <script>
     var duoshuoQuery = {
@@ -32,7 +33,7 @@
   </script>
   <script src="http://static.duoshuo.com/embed.unstable.js"></script>
   <script src="../bower_components/angular/angular.min.js"></script>
-  <script src="../dist/duoshuo.min.js"></script>
+  <script src="../src/duoshuo.js"></script>
   <script src="./example.js"></script>
 </body>
 </html>

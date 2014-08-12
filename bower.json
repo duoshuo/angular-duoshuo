@@ -1,11 +1,11 @@
 {
   "name": "duoshuo",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "authors": [
     "turing <o.u.turing@gmail.com>"
   ],
   "description": "a duoshuo SDK for angular.js, pure front-end, cross-domain request supported.",
-  "main": "src/duoshuo.js",
+  "main": "dist/duoshuo.min.js",
   "keywords": [
     "duoshuo",
     "duoshuo-sdk",

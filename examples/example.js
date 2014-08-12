@@ -1,6 +1,7 @@
 var app = angular.module('app', ['duoshuo']);
 
 app.controller('duoshuo', function($scope, $duoshuo) {
+  $scope.demokey = 'dede-dede';
   // inspect current user 
   $duoshuo.on('ready', function(err, data) {
     if (err) return console.error(err);

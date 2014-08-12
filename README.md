@@ -1,4 +1,4 @@
-## angular-duoshuo ![release](http://img.shields.io/github/release/duoshuo/angular-duoshuo.svg)&nbsp;![npm](http://img.shields.io/npm/v/angular-duoshuo.svg)
+## angular-duoshuo ![release](http://img.shields.io/github/release/duoshuo/angular-duoshuo.svg?style=flat)&nbsp;![npm](http://img.shields.io/npm/v/angular-duoshuo.svg?style=flat)
 
 a duoshuo SDK for angular.js, pure front-end, cross-domain request supported.
 

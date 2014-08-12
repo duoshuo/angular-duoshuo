@@ -43,6 +43,23 @@
         return;
       });
     };
+
+    // comments renderer
+    this.render = function(element) {
+      if (!window.DUOSHUO) throw new Error('duoshuo embed.js required!');
+      window.DUOSHUO.EmbedThread(element);
+    };
+  })
+  .directive('duoshuo', function($duoshuo){
+    return {
+      restrict: 'AE',
+      replace: true,
+      template: '<div class="ds-thread"></div>',
+      link: function(scope, element, attrs) {
+        // render comments when dom has been injected.
+        $duoshuo.render(element[0]);
+      }
+    };
   });
 
 })(window.angular, window.NProgress);
