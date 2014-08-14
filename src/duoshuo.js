@@ -25,7 +25,13 @@
           );
           if (!skipCheck) $rootScope.$apply();
           return;
-        }, errorCallback);
+        }, function(err) {
+          if (NProgressExist) NProgress.done();
+          if (errorCallback && typeof(errorCallback) === 'function') {
+            return errorCallback(err);
+          }
+          return;
+        });
       }
     });
 
