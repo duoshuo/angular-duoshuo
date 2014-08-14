@@ -51,7 +51,7 @@
     };
 
     // comments renderer
-    this.render = function(element) {
+    this.render = function(attrs) {
       if (!window.DUOSHUO) throw new Error('duoshuo embed.js required!');
       var data = {};
       if (attrs.threadId) data['thread-id'] = attrs.threadId;
