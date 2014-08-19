@@ -63,11 +63,14 @@
     return {
       restrict: 'AE',
       replace: true,
-      template: '<div class="ds-thread"></div>',
+      template: '<div class="ds-thread-wrapper"></div>',
       link: function(scope, element, attrs) {
         // render comments when dom has been injected.
-        angular.element(element[0])
-          .append($duoshuo.render(attrs));
+        angular.element(document).ready(function() {
+          // fired after dom ready
+          angular.element(element[0])
+            .append($duoshuo.render(attrs));
+        });
       }
     };
   });
