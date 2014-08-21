@@ -1,11 +1,11 @@
 {
   "name": "angular-duoshuo",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "a duoshuo SDK for angular.js, pure front-end, cross-domain request supported.",
   "main": "dist/duoshuo.min.js",
   "scripts": {
     "serve": "node_modules/.bin/serve .",
-    "build": "node_modules/.bin/uglifyjs src/duoshuo.js -o dist/duoshuo.min.js --source-map dist/duoshuo.min.js.map --source-map-url duoshuo.min.js.map",
+    "build": "node_modules/.bin/uglifyjs src/duoshuo.js -o dist/duoshuo.min.js --source-map dist/duoshuo.min.js.map --source-map-url duoshuo.min.js.map --source-map-root ../src/duoshuo.js",
     "dev": "npm run serve",
     "start": "npm run serve",
     "example": "npm run serve"
