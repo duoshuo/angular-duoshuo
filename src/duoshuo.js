@@ -6,7 +6,10 @@
   var NProgressExist = NProgress && NProgress.start && NProgress.done;
 
   angular.module('duoshuo', [])
-  .service('$duoshuo', function($rootScope) {
+    .service('$duoshuo', ['$rootScope', duoshuoService])
+    .directive('duoshuo', ['$duoshuo', duoshuoDirective]);
+
+  function duoshuoService($rootScope) {
     var self = this;
 
     // lowlevel api set
@@ -58,8 +61,9 @@
       if (attrs.threadKey) data['thread-key'] = attrs.threadKey;
       return window.DUOSHUO.createEmbedThread('div', data);
     };
-  })
-  .directive('duoshuo', function($duoshuo){
+  }
+
+  function duoshuoDirective($duoshuo) {
     return {
       restrict: 'AE',
       replace: true,
@@ -73,6 +77,6 @@
         });
       }
     };
-  });
+  }
 
 })(window.angular, window.NProgress);
