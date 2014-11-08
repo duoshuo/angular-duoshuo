@@ -1,6 +1,6 @@
 {
   "name": "angular-duoshuo",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "description": "a duoshuo SDK for angular.js, pure front-end, cross-domain request supported.",
   "main": "dist/duoshuo.min.js",
   "scripts": {
