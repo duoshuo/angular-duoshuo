@@ -24,7 +24,7 @@
       function($rootScope) {
         var duoshuo = {};
 
-        // lowlevel api set
+        // Lowlevel API set
         angular.forEach(['get', 'post', 'ajax'], function(method) {
           duoshuo[method] = function(endpoint, data, callback, errorCallback, skipCheck) {
             if (!window.DUOSHUO)
@@ -58,7 +58,7 @@
           }
         });
 
-        // event wrapper
+        // Event wrapper
         duoshuo.on = function(eve, callback, skipCheck) {
           if (['reset', 'ready'].indexOf(eve) === 0)
             return callback(new Error('event not found'));
@@ -73,7 +73,7 @@
           });
         };
 
-        // comments renderer
+        // Comments renderer
         duoshuo.render = function(attrs) {
           if (!window.DUOSHUO) 
             throw new Error('duoshuo embed.js required!');
@@ -96,10 +96,11 @@
       replace: true,
       template: '<div class="ds-thread-wrapper"></div>',
       link: function(scope, element, attrs) {
-        // render comments when dom has been injected.
+        // Render comments when DOM has been injected.
         angular.element(document).ready(function() {
-          // fired after dom ready
-          angular.element(element[0])
+          // Fired after DOM ready
+          angular
+            .element(element[0])
             .append(duoshuo.render(attrs));
         });
       }

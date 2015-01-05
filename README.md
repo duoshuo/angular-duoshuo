@@ -1,42 +1,44 @@
 ## angular-duoshuo ![release](http://img.shields.io/github/release/duoshuo/angular-duoshuo.svg?style=flat)&nbsp;![npm](http://img.shields.io/npm/v/angular-duoshuo.svg?style=flat)
 
-a duoshuo SDK for angular.js, pure front-end, cross-domain request supported.
+A duoshuo SDK for angular.js, pure front-end, cross-domain request supported.
 
 ### Installation
 
-using bower:
+Using bower:
 ```
-$ bower install duoshuo
+$ bower install duoshuo --save
 ```
-using NPM instead of bower:
+Using NPM instead of bower:
 
 ```
-$ npm install angular-duoshuo
+$ npm install angular-duoshuo --save
 ```
 
 ### Example
 
 See more examples in `./examples`, or just run `$ npm run example`
 
-````javascript
-angular.module('myApp',['duoshuo'])
-.controller('myController', function($scope, $duoshuo){
-  // high level api
-  $duoshuo.post('threads/create', {
-    title: 'new thread',
-    content: 'blablablabla'
-  }, function(err, data) {
-    // success callback
-    if (err) return console.error(err);
-    console.log(data);
-  }, function(err){
-    // error callback
-    console.error(err);
+```js
+angular
+  .module('myApp',['duoshuo'])
+  .controller('myController', function($scope, $duoshuo){
+    // high level api
+    $duoshuo.post('threads/create', {
+      title: 'new thread',
+      content: 'blablablabla'
+    }, function(err, data) {
+      // success callback
+      if (err) return console.error(err);
+      console.log(data);
+    }, function(err){
+      // error callback
+      console.error(err);
+    });
   });
-});
-````
+```
+
 ### Development
-just enjoy hacking
+Enjoy hacking:
 ```
 $ git clone https://github.com/duoshuo/angular-duoshuo.git
 $ npm install 
