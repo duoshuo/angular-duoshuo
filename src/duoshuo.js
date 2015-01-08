@@ -1,7 +1,9 @@
 ;(function(angular, NProgress) {
   'use strict';
 
-  if (!angular) throw new Error('angular.js required!');
+  if (!angular) 
+    throw new Error('angular.js required!');
+  
   var NProgressExist = NProgress && NProgress.start && NProgress.done;
 
   angular
@@ -16,7 +18,8 @@
       if (!configs)
         return;
       if (!configs.short_name)
-        throw new Error('ionicDuoshuo.config(); duoshuo.short_name is required');
+        throw new Error('duoshuo.config(); `short_name` is required');
+
       window.duoshuoQuery = configs;
     }
 
@@ -28,7 +31,7 @@
         angular.forEach(['get', 'post', 'ajax'], function(method) {
           duoshuo[method] = function(endpoint, data, callback, errorCallback, skipCheck) {
             if (!window.DUOSHUO)
-              throw new Error('duoshuo embed.js required!');
+              throw new Error('duoshuo embed.js is required!');
 
             var API = window.DUOSHUO.API;
             if (!API)
@@ -45,11 +48,14 @@
                 result
               );
 
-              if (!skipCheck) $rootScope.$apply();
+              if (!skipCheck) 
+                $rootScope.$apply();
 
               return;
             }, function(err) {
-              if (NProgressExist) NProgress.done();
+              if (NProgressExist) 
+                NProgress.done();
+
               if (errorCallback && typeof(errorCallback) === 'function') {
                 return errorCallback(err);
               }
