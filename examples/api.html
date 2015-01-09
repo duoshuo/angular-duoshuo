@@ -3,19 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Duoshuo Angular SDK</title>
-  <style>
-    h3 {
-      font-size: 16px;
-    }
-    .angular-duoshuo {
-      margin: 50px;
-    }
-    .response {
-      font-size: 12px;
-      color: #999;
-      margin-bottom: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="example.css">
 </head>
 <body>
   <div id="angular-duoshuo" class="angular-duoshuo" ng-controller="duoshuo">
@@ -24,7 +12,6 @@
     <div class="threads" ng-repeat="thread in threads">
       <h3 ng-bind="thread.title" ng-show="thread.title !== ''"></h3>
     </div>
-    <div duoshuo data-thread-key="{{demokey}}"></div>
   </div>
   <script>
     var duoshuoQuery = {
@@ -33,7 +20,7 @@
   </script>
   <script src="http://static.duoshuo.com/embed.unstable.js"></script>
   <script src="../bower_components/angular/angular.min.js"></script>
-  <script src="../dist/duoshuo.min.js"></script>
+  <script src="../src/duoshuo.js"></script>
   <script src="./example.js"></script>
 </body>
 </html>

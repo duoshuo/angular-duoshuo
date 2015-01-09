@@ -2,14 +2,21 @@
   'use strict';
 
   if (!angular) 
-    throw new Error('angular.js required!');
-  
+    throw new Error('Angular.js required!');
+
   var NProgressExist = NProgress && NProgress.start && NProgress.done;
 
   angular
     .module('duoshuo', [])
+    // API set
     .provider('duoshuo', duoshuoProvider)
-    .directive('duoshuo', ['duoshuo', duoshuoDirective]);
+    // Directives
+    .directive('dsThread', createDirective('ds-thread'))
+    .directive('dsRecentComments', createDirective('ds-recent-comments'))
+    .directive('dsRecentVisitors', createDirective('ds-recent-visitors'))
+    .directive('dsThreadCount', createDirective('ds-thread-count'))
+    .directive('dsTopThreads', createDirective('ds-top-threads'))
+    .directive('dsLogin', createDirective('ds-login'));
 
   function duoshuoProvider() {
     this.config = config;
@@ -80,15 +87,13 @@
         };
 
         // Comments renderer
-        duoshuo.render = function(attrs) {
-          if (!window.DUOSHUO) 
-            throw new Error('duoshuo embed.js required!');
+        duoshuo.render = function(options) {
+          if (!window.DUOSHUO || !window.DUOSHUO.initSelector)
+            throw new Error('createDirective(); duoshuo embed.js is required!');
 
-          var data = {};
-          if (attrs.threadId) data['thread-id'] = attrs.threadId;
-          if (attrs.threadKey) data['thread-key'] = attrs.threadKey;
-
-          return window.DUOSHUO.createEmbedThread('div', data);
+          return window.DUOSHUO.initSelector(
+            window.DUOSHUO.selectors['.ds-thread']
+          )
         };
 
         return duoshuo;
@@ -96,21 +101,22 @@
     ];
   }
 
-  function duoshuoDirective(duoshuo) {
-    return {
-      restrict: 'AE',
-      replace: true,
-      template: '<div class="ds-thread-wrapper"></div>',
-      link: function(scope, element, attrs) {
-        // Render comments when DOM has been injected.
-        angular.element(document).ready(function() {
-          // Fired after DOM ready
-          angular
-            .element(element[0])
-            .append(duoshuo.render(attrs));
-        });
-      }
-    };
+  function createDirective(type) {
+    return function directive() {
+      return {
+        restrict: 'AE',
+        replace: true,
+        template: '<div class="' + type + '">',
+        link: function(scope, element, attrs) {
+          if (!window.DUOSHUO || !window.DUOSHUO.initSelector)
+            return;
+
+          // Trigger init selector function 
+          window.DUOSHUO
+            .initSelector(window.DUOSHUO.selectors['.' + type])
+        }
+      };
+    }
   }
 
 })(window.angular, window.NProgress);

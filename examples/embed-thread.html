@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>Duoshuo Angular SDK</title>
+  <link rel="stylesheet" href="example.css">
+</head>
+<body>
+  <div id="angular-duoshuo" class="angular-duoshuo" ng-controller="duoshuo">
+    <div ds-thread data-thread-key="{{demokey}}"></div>
+  </div>
+  <script>
+    var duoshuoQuery = {
+      short_name: 'airpub'
+    }
+  </script>
+  <script src="http://static.duoshuo.com/embed.unstable.js"></script>
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../src/duoshuo.js"></script>
+  <script>
+    var app = angular.module('app', ['duoshuo']);
+    app.controller('duoshuo', function($scope, duoshuo) {
+      $scope.demokey = 'dede-dede';
+    });
+  </script>
+</body>
+</html>

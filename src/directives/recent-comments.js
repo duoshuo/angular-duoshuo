@@ -1,28 +1,27 @@
-;(function(angular, NProgress) {
+;(function(angular) {
   'use strict';
 
   if (!angular) 
     throw new Error('angular.js required!');
 
-  var NProgressExist = NProgress && NProgress.start && NProgress.done;
-
   angular
     .module('duoshuo')
-    .directive('rencentComments', ['duoshuo', rencentComments]);
+    .directive('duoshuoRecentComments', rencentComments);
 
-  // Todo: Remove direactives wrapper,
-  function rencentComments(duoshuo) {
+  function rencentComments() {
     return {
       restrict: 'AE',
       replace: true,
-      template: '<div class="ds-recent-comments-wrapper"></div>',
+      template: '<div class="ds-recent-comments"></div>',
       link: function(scope, element, attrs) {
-        // Render comments when DOM has been injected.
-        angular.element(document).ready(function() {
-          
-        });
+        if (!window.DUOSHUO.initSelector)
+          return;
+
+        // Trigger init selector function 
+        window.DUOSHUO
+          .initSelector(window.DUOSHUO.selectors['.ds-recent-comments'])
       }
     };
   }
 
-})(window.angular, window.NProgress)
+})(window.angular)

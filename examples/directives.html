@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>Duoshuo Angular SDK</title>
+  <link rel="stylesheet" href="example.css">
+</head>
+<body>
+  <div class="example">
+    <h3>Recent Comments</h3>
+    <div ds-recent-comments></div>
+    <h3>Recent Visitors</h3>
+    <div ds-recent-visitors data-num-items="10"></div>
+    <h3>Top Threads</h3>
+    <div ds-top-threads data-range="monthly" data-num-items="5"></div>
+    <h3>Thread Count</h3>
+    <div ds-thread-count data-thread-key="6023b620-2b62-11e4-8901-7922c35435d6"></div>
+    <h3>Login</h3>
+    <div ds-login></div>
+  </div>
+  <script>
+    var duoshuoQuery = {
+      short_name: 'airpub'
+    }
+  </script>
+  <script src="http://static.duoshuo.com/embed.unstable.js"></script>
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../src/duoshuo.js"></script>
+  <script>
+    angular.module('app', ['duoshuo'])
+  </script>
+</body>
+</html>
