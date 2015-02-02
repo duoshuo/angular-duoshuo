@@ -103,29 +103,6 @@
   }
 
   function createDirective(type) {
-    if (type === 'ds-thread') {
-      return function dsThreadDirective() {
-        return {
-          restrict: 'AE',
-          replace: true,
-          template: '<div class="ds-thread-wrapper"></div>',
-          link: function(scope, element, attrs) {
-            // Render comments when DOM has been injected.
-            angular.element(document).ready(function() {
-              var data = {};
-              if (attrs.threadId) data['thread-id'] = attrs.threadId;
-              if (attrs.threadKey) data['thread-key'] = attrs.threadKey;
-
-              // Fired after DOM ready
-              angular
-                .element(element[0])
-                .append(window.DUOSHUO.createEmbedThread('div', data));
-            });
-          }
-        };
-      };
-    }
-
     return function directive() {
       return {
         restrict: 'AE',
