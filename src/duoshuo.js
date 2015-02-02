@@ -92,6 +92,7 @@
             throw new Error('createDirective(); duoshuo embed.js is required!');
 
           return window.DUOSHUO.initSelector(
+            '.ds-thread',
             window.DUOSHUO.selectors['.ds-thread']
           )
         };
@@ -137,7 +138,7 @@
 
             // Trigger init selector function 
             window.DUOSHUO
-              .initSelector(type, window.DUOSHUO.selectors['.' + type])
+              .initSelector('.' + type, window.DUOSHUO.selectors['.' + type])
           });
         }
       };
